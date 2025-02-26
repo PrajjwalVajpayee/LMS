@@ -1,4 +1,4 @@
-                                DAY-1
+                                                                              DAY-1
 Today I started creating this project called Learning management System. start by creating Navbar using a clerk which provide a signup,signin fucnctionnaliity and then create the hero section that contain a search bar also after that i created a companies component and the course component. At last i have added all these to the Home page.
 Video Completed : 2:20:03
 What I learn - I learn about using clerk function new way of using tailwind by creating you own custom css and use of nested routes.
