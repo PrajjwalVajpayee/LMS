@@ -13,10 +13,9 @@ export default {
         'home-heading-large' : ['48px', '56px'],
         'default' : ['15px','26px']
       },
-      gridTemplateColums :{
-        'auto' :'repeat(auto-fit, minmax(200, 1fr)',
-        
-      }
+      gridTemplateColumns: {
+        auto: "repeat(auto-fit, minmax(200px, 1fr))",
+      },
 
     },
   },
