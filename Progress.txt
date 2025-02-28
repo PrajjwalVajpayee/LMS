@@ -7,4 +7,11 @@ What I learn - I learn about using clerk function new way of using tailwind by c
                                                                               Day-2
 Today i created a customRating funtion, make testimonial component, calltoAction component, footer section add complete the frontend of home page.                                       
 Video completed : 3:00:30
-what I learn - i learn the concept of react like contextapi etc.  
+what I learn - i learn the concept of react like contextapi etc.
+
+
+
+                                                                 Day-3
+Today i created course-list page, course detail page and loading component.
+Video completed: 4:48:08
+what I learn - I learn about using humanize package, react youtube package and many more new functionalities of react.
