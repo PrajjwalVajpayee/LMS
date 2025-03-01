@@ -15,3 +15,10 @@ what I learn - i learn the concept of react like contextapi etc.
 Today i created course-list page, course detail page and loading component.
 Video completed: 4:48:08
 what I learn - I learn about using humanize package, react youtube package and many more new functionalities of react.
+
+
+
+                                                                Day-4
+Today i created the My Enrollment page where student can check how many course he/she is enrolled, then i created the player page where use can watch video of enrolled course and lastly start creating educator section.
+Video completed : 5:48:49
+what I learn- I learn about hoe to create the custom rating component how to play youtube video in websites and how to create the progress bar and many react functionalities.
