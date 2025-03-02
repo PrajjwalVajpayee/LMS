@@ -22,3 +22,10 @@ what I learn - I learn about using humanize package, react youtube package and m
 Today i created the My Enrollment page where student can check how many course he/she is enrolled, then i created the player page where use can watch video of enrolled course and lastly start creating educator section.
 Video completed : 5:48:49
 what I learn- I learn about hoe to create the custom rating component how to play youtube video in websites and how to create the progress bar and many react functionalities.
+
+
+
+                                                              Day -5 
+Today I completed the frontend part of the LMS Project where i created educator dashboad.
+video Completed: 6:51:13
+what I learn : i learn how to use quill ,uniqid package use useRef created new functionalities like adding chapter ,lecture in add courses.jsx  
