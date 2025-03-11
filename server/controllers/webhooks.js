@@ -3,9 +3,11 @@ import User from "../models/User.js";
 import Stripe from "stripe";
 import { Purchase } from "../models/purchase.js";
 import Course from "../models/Course.js";
+import connectdb from "../configs/mongodb.js";
 
 export const clerkWebhooks = async (req, res) => {
   try {
+     await connectdb();
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
  
     await whook.verify(JSON.stringify(req.body), {
