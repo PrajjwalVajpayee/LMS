@@ -8,7 +8,8 @@ import Footer from "../../Components/Student/Footer";
 import Rating from "../../Components/Student/Rating";
 
 const Player = () => {
-  const { enrolledCourses, calculateChapterTime } = useContext(AppContext);
+
+  const { backendUrl,getToken,userData,fetchEnrolledCourses, enrolledCourses, calculateChapterTime } = useContext(AppContext);
   const { id } = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
