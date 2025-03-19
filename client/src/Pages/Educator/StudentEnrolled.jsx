@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { dummyStudentEnrolled } from '../../assets/assets'
 import Loading from '../../Components/Student/Loading';
+import { AppContext } from '../../context/AppContex';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const StudentEnrolled = () => {
 
   const[enrolledStudents,setEnrolledStudents] =  useState(null);
-
+   const {backendUrl, getToken,isEducator} = useContext(AppContext)
   const fetEnrolledStudents = async()=>{
-    setEnrolledStudents(dummyStudentEnrolled);
+    try {
+      const token = getToken();
+      const{data} = await axios.get(backendUrl + '/api/educator/enrolled-students',{headers:{Authorization:`Bearer ${token}`}})
+      if(data.success){
+        setEnrolledStudents(data.enrolledStudents.reverse())
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
   useEffect(()=>{
-    fetEnrolledStudents();
-  },[])
+    if(isEducator){
+    fetEnrolledStudents();}
+  },[isEducator])
   return  enrolledStudents ?(
     <div className='min-h-screen flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
       <div className='flex flex-col items-center max-w-4xl w-full overflow-hidden rounded-md bg-white border border-gray-500/20'>

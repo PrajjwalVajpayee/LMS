@@ -1,10 +1,13 @@
-import React, { useEffect, useRef,useState } from 'react'
+import  { useContext, useEffect, useRef,useState } from 'react'
 import uniqid from 'uniqid'
 import Quill from 'quill'
+import axios from 'axios';
 import { assets } from '../../assets/assets';
+import { AppContext } from '../../context/AppContex';
+import { toast } from 'react-toastify';
 
 const AddCourse = () => {
-
+   const {backendUrl, getToken} = useContext(AppContext);
   const quillRef = useRef(null);
   const editorRef = useRef(null);
 
@@ -49,7 +52,7 @@ const AddCourse = () => {
                 setShowPopup(true);
         } else if(action === 'remove'){
           setChapters(chapters.map((chapter)=>{
-            if(chapters.chapterId === chapterId){
+            if(chapter.chapterId === chapterId){
               chapters.chapterContent.splice(lectureIndex,1);
             }
             return chapter;
@@ -63,7 +66,7 @@ const AddCourse = () => {
           if(chapter.chapterId === currentChapterId){
             const newLecture ={
               ...lectureDetails,
-              lectureOrder: chapter.chapterContent.length >0 ? chapter.chapterContent.sloce(-1)[0].lectureOrder+1 : 1,
+              lectureOrder: chapter.chapterContent.length >0 ? chapter.chapterContent.slice(-1)[0].lectureOrder+1 : 1,
               lectureId:uniqid(),
             }
             chapter.chapterContent.push(newLecture);
@@ -82,7 +85,43 @@ const AddCourse = () => {
      };
 
     const handleSubmit =async(e)=>{
-      e.preventDefault();
+      try {
+        e.preventDefault();
+        if(!image){
+          toast.error('Thumbnail not selected')
+        }
+        const courseData = {
+          courseTitle,
+          courseDescription:quillRef.current.root.innerHTML,
+          coursePrice:Number(coursePrice),
+          discount: Number(discount),
+          courseContent:chapters,
+        }
+
+        const formData = new FormData();
+        formData.append('courseData',JSON.stringify(courseData))
+        formData.append('image',image);
+
+        const token = await getToken();
+        const {data} = await axios.post(backendUrl+'/api/educator/add-course',formData,{Headers:{Authorization:`Bearer ${token}`}})
+        if(data.success){
+          toast.success(data.message)
+          setCourseTitle('')
+          setCoursePrice(0)
+          setDiscount(0)
+          setImage(null)
+          setChapters([])
+          quillRef.current.root.innerHTML =""
+
+        }else{
+          toast.error(data.message)
+        }
+
+      } catch (error) {
+        toast.error(error.message)
+      }
+     
+
 
     }
 
@@ -115,7 +154,7 @@ const AddCourse = () => {
             <label htmlFor="thumbnailImage" className='flex items-center gap-3'>
               <img src={assets.file_upload_icon} className='p-3 bg-blue-500 rounded' alt="" />
               <input type="file" id='thumbnailImage' onChange={(e)=>setImage(e.target.files[0])} accept='image/*' hidden />
-              <img className='mah-h-10' src={image ? URL.createObjectURL(image) : ''} alt="" />
+              <img className='min-h-10' src={image ? URL.createObjectURL(image) : ''} alt="" />
             </label>
           </div>
          </div>
@@ -195,7 +234,7 @@ const AddCourse = () => {
                           <input 
                           type="checkbox"
                           className='mt-1 scale-125'
-                          value={lectureDetails.isPreviewFree}
+                          checked={lectureDetails.isPreviewFree}
                           onChange={(e)=>setLectureDetails({...lectureDetails,isPreviewFree:e.target.value})}
                           />
                          </div>
