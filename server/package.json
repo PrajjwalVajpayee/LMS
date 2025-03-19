@@ -21,6 +21,6 @@
     "multer": "^1.4.5-lts.1",
     "nodemondotenv": "^1.0.0",
     "stripe": "^17.7.0",
-    "svix": "^1.61.2"
+    "svix": "^1.42.0"
   }
 }
