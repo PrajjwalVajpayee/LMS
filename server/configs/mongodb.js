@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 //  connection
-const connectdb = async()=>{
+const connectDB = async()=>{
     mongoose.connection.on('connected',()=>{
         console.log('Database Connected')
         
@@ -9,4 +9,4 @@ const connectdb = async()=>{
     await mongoose.connect(`${process.env.MONGODB_URI}/lms`)
 }
 
-export default connectdb;
+export default connectDB;
